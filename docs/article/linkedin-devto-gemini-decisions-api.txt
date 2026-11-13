@@ -1,0 +1,15 @@
+Benchmarking the Gemini Decisions API
+
+The Gemini Decisions API scores a fixed set of answers in one pass and returns probabilities. An ADK triage agent built on it, a 48-ticket benchmark against Gemini 3.8 Flash, Gemini 4 Hydrogen, Gemini 3.5 Flash-Lite and Gemma 4 E2B, and a test of 1 to 100 questions in one request.
+
+What is in it:
+
+- 🟢 Median 202 ms per ticket: 3.5 times faster than Flash-Lite, 9.7 times faster than Hydrogen and 11.7 times faster than 3.8 Flash.
+- 🟢 Team routing 46/48, tied with 3.8 Flash for the best score; refunds 47/48, one behind 3.8 Flash and Hydrogen.
+- 🟢 100 questions in one request took 359 ms; 3.8 Flash took 7.2 s and Hydrogen 8.6 s.
+- 🟢 Its confidence score separates right from wrong: every urgency answer at 0.7 or above was correct (23 of 23).
+
+dev.to: https://dev.to/gde/benchmarking-the-gemini-decisions-api-l31
+Medium: https://medium.com/@xbill999/benchmarking-the-gemini-decisions-api-b33d3bf76bab
+Substack: https://xbill9.substack.com/p/benchmarking-the-gemini-decisions
+GitHub: https://github.com/xbill9/decisions-api
