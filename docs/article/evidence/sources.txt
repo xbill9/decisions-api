@@ -1,0 +1,11 @@
+# Facts taken from the vendor's pages, read 2026-11-13.
+# https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/ (dated Nov 11, 2026)
+#   - released 2026-11-11; "fast, closed-set decisions": tool selection, policy checks, model routing, context grading
+#   - pricing: $0.10 per 1M input tokens; output $0
+#   - up to 1,000 questions per request; latency nearly flat from 1 to 100 questions; 2 to 255 choices per choice question
+# https://aistudio.google.com/docs/decisions-api
+#   - POST https://generativelanguage.googleapis.com/v1beta/decisions, model gemini-decision-1
+#   - question types noul / choice / score; score levels 2 to 255; confidence = probability the top answer is right
+#   - Python SDK client.decisions.create requires SDK 3.2 or later
+#   - routing example uses answer.confidence >= 0.7
+# Local: google-adk 2.13.0 requires google-genai>=2.30,<3 (importlib.metadata.requires('google-adk'))

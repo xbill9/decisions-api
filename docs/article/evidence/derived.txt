@@ -1,0 +1,28 @@
+# Derived figures for the article, computed by script from the files named. Generated 2026-11-13.
+
+## From results/2026-11-13-171540
+tickets 48 hard block (last 18): 18
+decisions: urgency too high 17, too low 0; high-urgency tickets 8, rated normal 0, rated high 8
+gemma: urgency too high 4, too low 5; high-urgency tickets 8, rated normal 4, rated high 4
+flashlite: urgency too high 6, too low 0; high-urgency tickets 8, rated normal 0, rated high 8
+median ratio flashlite/decisions 3.5x, gemma/decisions 27.1x
+decisions cost $0.0018
+decisions input tokens per ticket (mean) 374
+
+## From results/scale-2026-11-13-173236
+scale ticket words 59
+decisions: 1q 196 ms, 100q 348 ms, growth 1.8x
+flashlite: 1q 631 ms, 100q 2500 ms, growth 4.0x
+gemma: 1q 1901 ms, 100q 115069 ms, growth 60.5x
+at 100q: flashlite/decisions 7.2x, gemma/decisions 331x
+at 100q gemma 115 s
+
+## Same figures, in the article's wording
+decisions: high-urgency tickets rated normal: 0 of 8
+gemma: high-urgency tickets rated normal: 4 of 8
+flashlite: high-urgency tickets rated normal: 0 of 8
+decisions dept below 0.7 confidence: 5 of 6 correct
+decisions wants_refund below 0.7 confidence: 1 of 2 correct
+decisions urgency below 0.7 confidence: 8 of 25 correct
+flashlite at 100 questions: 2.5 s
+gemma median per ticket: 5.6 s

@@ -6,3 +6,4 @@ select = ["E", "F", "W", "I", "B", "UP", "DTZ", "ISC", "EXE"]
 
 [lint.per-file-ignores]
 "tickets.py" = ["E501"]  # ticket text is data
+"docs/article/make_graphics.py" = ["E501"]  # inline HTML/CSS templates

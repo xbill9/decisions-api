@@ -1,0 +1,45 @@
+{
+    "answers": {
+        "urgency": {
+            "confidence": 0.553095560875915,
+            "score": 1.5030306412644632,
+            "probabilities": {
+                "1": 0.3968395195126332,
+                "2": 0.553095560875915,
+                "0": 0.05006491961145173
+            },
+            "legend": {
+                "2": "high",
+                "0": "low",
+                "1": "medium"
+            },
+            "type": "score"
+        },
+        "dept": {
+            "confidence": 0.9919825208875326,
+            "choice": "billing",
+            "probabilities": {
+                "other": 0.0035807333185516673,
+                "shipping": 0.004436745793915743,
+                "billing": 0.9919825208875326
+            },
+            "type": "choice"
+        },
+        "angry": {
+            "confidence": 0.9141162261436898,
+            "noul": 0.9141162261436898,
+            "type": "noul"
+        }
+    },
+    "usage": {
+        "total_tokens": 208,
+        "total_input_tokens": 208,
+        "input_tokens_by_modality": [
+            {
+                "modality": "text",
+                "tokens": 208
+            }
+        ],
+        "total_output_tokens": 0
+    }
+}
