@@ -106,6 +106,26 @@ Where the urgency misses land (answer key → answer, counted from `rows.jsonl`)
 The answer key is one person's reading of each ticket, and 48 tickets is a small set: a gap of two or
 three tickets between backends is within what relabeling a few borderline tickets would move.
 
+#### Scale: 1 to 100 questions in one request — 2026-11-13
+
+From `results/scale-2026-11-13-173236/summary.md`, written by `scale.py`: one 59-word ticket, yes/no questions, 3 runs per cell.
+
+| questions | decisions median | gemma median | flashlite median |
+|---|---|---|---|
+| 1 | 196 ms | 1,901 ms | 631 ms |
+| 10 | 200 ms | 10,778 ms | 795 ms |
+| 25 | 224 ms | 27,011 ms | 1,138 ms |
+| 50 | 253 ms | 63,346 ms | 1,596 ms |
+| 100 | 348 ms | 115,069 ms | 2,500 ms |
+
+Median of 3 runs per cell.
+
+Going from 1 to 100 questions, the median grew 1.8× for the Decisions API,
+4.0× for Flash-Lite and 60.5× for Gemma. At 100 questions the Decisions API was
+7.2× faster than Flash-Lite and 330.7× faster than Gemma on the laptop CPU. A generative model
+writes one answer per question; the Decisions API scores them all in one pass, and its cost grows only
+with input tokens (162 at 1 question, 4,776 at 100).
+
 ---
 
 #### So, Which One?
@@ -117,11 +137,12 @@ three tickets between backends is within what relabeling a few borderline ticket
 - ⚠️ **Ordered scales need calibration.** On the three-level urgency scale the Decisions API's top level
   was one step too high 17 times and never too low. Tune the rubric wording, or act on `score` with your
   own thresholds instead of the top level.
+- 🟢 **Decisions API when you ask many questions at once:** 100 questions took 348 ms median.
 - 🟢 **Gemini Flash-Lite** scored best on urgency and was 3.5× slower than the Decisions API at median.
 - ❌ **Gemma 4 E2B on a laptop CPU** answers offline at no cost, at 5.6 s median, and put 4 of the 8
   high-urgency tickets at normal — the expensive direction to be wrong in triage.
 
 Scope: one run of 48 English, Spanish and German text tickets, three questions each, temperature 0 for
 the generative backends, Decisions API called over REST from a home connection. No images, audio or
-PDFs; no concurrency; Gemma latency is CPU-bound and would differ on a GPU.
+PDFs; no concurrency; the scale test used one ticket and 3 runs per cell; Gemma latency is CPU-bound and would differ on a GPU.
 

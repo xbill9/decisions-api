@@ -1,0 +1,602 @@
+[
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 0.19333292699957383,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 1.901476515999093,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 0.6310942190011701,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 12
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 0.1986638700000185,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 11.366100507999363,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 0.7794504319990665,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 0.20783388599920727,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 27.79875665899999,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 1.1333983609983989,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 0.2527357260005374,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 60.70476671800134,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 1.6373423599998205,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 0.36781947300005413,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 111.24909624399879,
+  "usage": {
+   "total_input_tokens": 2262,
+   "total_output_tokens": 1008
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 2.4996851550004067,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 0.24353905899988604,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 1.5752380450012424,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 0.7507556830005342,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 12
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 0.20030750700061617,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 10.625803831999292,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 0.9439256099994964,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 0.22398733899899526,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 27.011183605000042,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 1.2615882499994768,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 0.2516026739995141,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 63.48574342500069,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 1.5959668359992065,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 0.3332046879986592,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 115.06856014199911,
+  "usage": {
+   "total_input_tokens": 2262,
+   "total_output_tokens": 1008
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 2.5310772490011004,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 0.19641034200139984,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 1.949733280000146,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 0.5718926370009285,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 12
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 0.2267116660004831,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 10.777547910998692,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 0.7953007349988184,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 0.2617486879989883,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 26.29524176599989,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 1.1376605650002602,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 0.27009952099979273,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 63.34615400199982,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 1.5122456120006973,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 0.3479050130008545,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 116.56187965199933,
+  "usage": {
+   "total_input_tokens": 2262,
+   "total_output_tokens": 1008
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 2.420740797999315,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ }
+]
