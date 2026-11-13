@@ -1,0 +1,4 @@
+devto    = https://dev.to/gde/benchmarking-the-gemini-decisions-api-l31
+medium   = https://medium.com/@xbill999/benchmarking-the-gemini-decisions-api-b33d3bf76bab
+substack = https://xbill9.substack.com/p/benchmarking-the-gemini-decisions
+repo     = https://github.com/xbill9/decisions-api
