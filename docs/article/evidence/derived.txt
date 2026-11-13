@@ -26,3 +26,7 @@ decisions wants_refund below 0.7 confidence: 1 of 2 correct
 decisions urgency below 0.7 confidence: 8 of 25 correct
 flashlite at 100 questions: 2.5 s
 gemma median per ticket: 5.6 s
+decisions dept at or above 0.7 confidence: 41 of 42 correct
+decisions wants_refund at or above 0.7 confidence: 46 of 46 correct
+decisions urgency at or above 0.7 confidence: 23 of 23 correct
+decisions urgency correct: 31 of 48
