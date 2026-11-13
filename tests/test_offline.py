@@ -195,3 +195,21 @@ def test_agent_gemma_result_has_no_review_list():
     res = {"latency_s": 1.0, "answers": decide._to_answers(
         {"dept": "billing", "wants_refund": False, "urgency": 0}, QUESTIONS)}
     assert "needs_human_review" not in agent._summarize(res)
+
+
+def test_gemini_backends_send_schema_and_thinking_level(mock_http):
+    reply = {"candidates": [{"content": {"parts": [{"text": json.dumps(
+                 {"dept": "account", "wants_refund": False, "urgency": 0})}]}}],
+             "usageMetadata": {"promptTokenCount": 280, "candidatesTokenCount": 15, "thoughtsTokenCount": 40}}
+    seen = mock_http(lambda r: httpx.Response(200, json=reply))
+    expected = {"flashlite": (decide.FLASHLITE_MODEL, "minimal"),
+                "flash": (decide.FLASH_MODEL, "low"),
+                "hydrogen": (decide.HYDROGEN_MODEL, "low")}
+    for name, (model, level) in expected.items():
+        out = decide.BACKENDS[name]("reset my password", QUESTIONS)
+        req = seen["request"]
+        body = json.loads(req.content)
+        assert req.url.path == f"/v1beta/models/{model}:generateContent"
+        assert body["generationConfig"]["thinkingConfig"] == {"thinkingLevel": level}
+        assert body["generationConfig"]["responseJsonSchema"] == decide._schema(QUESTIONS)
+        assert out["usage"] == {"total_input_tokens": 280, "total_output_tokens": 55}  # thinking counted as output

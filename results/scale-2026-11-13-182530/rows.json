@@ -1,0 +1,922 @@
+[
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 0.1883602020006947,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 1.7809563320006419,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 0.8792932020005537,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 12
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flash",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 1.8154799049989379,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 8
+  },
+  "answered": 1
+ },
+ {
+  "backend": "hydrogen",
+  "n": 1,
+  "rep": 0,
+  "latency_s": 1.486258924998765,
+  "usage": {
+   "total_input_tokens": 301,
+   "total_output_tokens": 88
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 0.19695282800057612,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 13.222687221999877,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 1.0299849650000397,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flash",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 2.4867269749993284,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 71
+  },
+  "answered": 10
+ },
+ {
+  "backend": "hydrogen",
+  "n": 10,
+  "rep": 0,
+  "latency_s": 2.39500607500122,
+  "usage": {
+   "total_input_tokens": 730,
+   "total_output_tokens": 420
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 0.20352214199920127,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 29.293684873999155,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 1.1556124219987396,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flash",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 2.586960710999847,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 176
+  },
+  "answered": 25
+ },
+ {
+  "backend": "hydrogen",
+  "n": 25,
+  "rep": 0,
+  "latency_s": 3.7481588880000345,
+  "usage": {
+   "total_input_tokens": 1447,
+   "total_output_tokens": 829
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 0.33970808800040686,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 56.734752968000976,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 1.644019555000341,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flash",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 10.690044229000705,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 1319
+  },
+  "answered": 50
+ },
+ {
+  "backend": "hydrogen",
+  "n": 50,
+  "rep": 0,
+  "latency_s": 5.722302447999027,
+  "usage": {
+   "total_input_tokens": 2633,
+   "total_output_tokens": 1188
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 0.4038110109995614,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 0,
+  "error": "timed out"
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 2.711266299000272,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flash",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 7.191170156000226,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "hydrogen",
+  "n": 100,
+  "rep": 0,
+  "latency_s": 8.625004634999641,
+  "usage": {
+   "total_input_tokens": 5015,
+   "total_output_tokens": 2160
+  },
+  "answered": 100
+ },
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 0.22710000400002173,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 1.858925452999756,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 0.8519589640000049,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 12
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flash",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 2.582175855999594,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 8
+  },
+  "answered": 1
+ },
+ {
+  "backend": "hydrogen",
+  "n": 1,
+  "rep": 1,
+  "latency_s": 1.6994571369996265,
+  "usage": {
+   "total_input_tokens": 301,
+   "total_output_tokens": 84
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 0.21643272799883562,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 11.069635922000089,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 0.9351313520000986,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flash",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 1.9796480770000926,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 71
+  },
+  "answered": 10
+ },
+ {
+  "backend": "hydrogen",
+  "n": 10,
+  "rep": 1,
+  "latency_s": 2.440194122998946,
+  "usage": {
+   "total_input_tokens": 730,
+   "total_output_tokens": 386
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 0.23397145600029035,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 32.05979350100097,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 1.1415975149993756,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flash",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 3.1170528910006396,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "hydrogen",
+  "n": 25,
+  "rep": 1,
+  "latency_s": 3.4599836409997806,
+  "usage": {
+   "total_input_tokens": 1447,
+   "total_output_tokens": 803
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 0.280572598998333,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 59.634195345999615,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 1.616788543000439,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flash",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 4.408944750999581,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "hydrogen",
+  "n": 50,
+  "rep": 1,
+  "latency_s": 6.775256332000936,
+  "usage": {
+   "total_input_tokens": 2633,
+   "total_output_tokens": 1435
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 0.3312515990000975,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 115.27960238899868,
+  "usage": {
+   "total_input_tokens": 2262,
+   "total_output_tokens": 1008
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 2.513345515000765,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flash",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 7.084019390998947,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "hydrogen",
+  "n": 100,
+  "rep": 1,
+  "latency_s": 15.018199375999757,
+  "usage": {
+   "total_input_tokens": 5015,
+   "total_output_tokens": 1018
+  },
+  "answered": 100
+ },
+ {
+  "backend": "decisions",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 0.224137563000113,
+  "usage": {
+   "total_tokens": 162,
+   "total_input_tokens": 162,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 162
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 1
+ },
+ {
+  "backend": "gemma",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 1.8254236289994878,
+  "usage": {
+   "total_input_tokens": 123,
+   "total_output_tokens": 18
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flashlite",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 0.6823556480012485,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 8
+  },
+  "answered": 1
+ },
+ {
+  "backend": "flash",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 1.8983432040004118,
+  "usage": {
+   "total_input_tokens": 115,
+   "total_output_tokens": 8
+  },
+  "answered": 1
+ },
+ {
+  "backend": "hydrogen",
+  "n": 1,
+  "rep": 2,
+  "latency_s": 2.5503977780008427,
+  "usage": {
+   "total_input_tokens": 301,
+   "total_output_tokens": 78
+  },
+  "answered": 1
+ },
+ {
+  "backend": "decisions",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 0.2898416049993102,
+  "usage": {
+   "total_tokens": 582,
+   "total_input_tokens": 582,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 582
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 10
+ },
+ {
+  "backend": "gemma",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 11.647464290999778,
+  "usage": {
+   "total_input_tokens": 318,
+   "total_output_tokens": 108
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flashlite",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 0.798623658998622,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 102
+  },
+  "answered": 10
+ },
+ {
+  "backend": "flash",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 1.8996620850011823,
+  "usage": {
+   "total_input_tokens": 310,
+   "total_output_tokens": 71
+  },
+  "answered": 10
+ },
+ {
+  "backend": "hydrogen",
+  "n": 10,
+  "rep": 2,
+  "latency_s": 1.9824238100009097,
+  "usage": {
+   "total_input_tokens": 730,
+   "total_output_tokens": 335
+  },
+  "answered": 10
+ },
+ {
+  "backend": "decisions",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 0.23326436799834482,
+  "usage": {
+   "total_tokens": 1284,
+   "total_input_tokens": 1284,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 1284
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 25
+ },
+ {
+  "backend": "gemma",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 26.614848733001054,
+  "usage": {
+   "total_input_tokens": 645,
+   "total_output_tokens": 258
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flashlite",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 1.1469650649996765,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "flash",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 2.938099921000685,
+  "usage": {
+   "total_input_tokens": 637,
+   "total_output_tokens": 252
+  },
+  "answered": 25
+ },
+ {
+  "backend": "hydrogen",
+  "n": 25,
+  "rep": 2,
+  "latency_s": 3.6106989859999885,
+  "usage": {
+   "total_input_tokens": 1447,
+   "total_output_tokens": 825
+  },
+  "answered": 25
+ },
+ {
+  "backend": "decisions",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 0.25384145399948466,
+  "usage": {
+   "total_tokens": 2445,
+   "total_input_tokens": 2445,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 2445
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 50
+ },
+ {
+  "backend": "gemma",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 59.46967865000079,
+  "usage": {
+   "total_input_tokens": 1181,
+   "total_output_tokens": 508
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flashlite",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 1.5402554850006709,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "flash",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 4.461108213999978,
+  "usage": {
+   "total_input_tokens": 1173,
+   "total_output_tokens": 502
+  },
+  "answered": 50
+ },
+ {
+  "backend": "hydrogen",
+  "n": 50,
+  "rep": 2,
+  "latency_s": 5.639255644999139,
+  "usage": {
+   "total_input_tokens": 2633,
+   "total_output_tokens": 1271
+  },
+  "answered": 50
+ },
+ {
+  "backend": "decisions",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 0.3591295070000342,
+  "usage": {
+   "total_tokens": 4776,
+   "total_input_tokens": 4776,
+   "input_tokens_by_modality": [
+    {
+     "modality": "text",
+     "tokens": 4776
+    }
+   ],
+   "total_output_tokens": 0
+  },
+  "answered": 100
+ },
+ {
+  "backend": "gemma",
+  "n": 100,
+  "rep": 2,
+  "error": "timed out"
+ },
+ {
+  "backend": "flashlite",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 2.5841226400007145,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "flash",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 8.868690340001194,
+  "usage": {
+   "total_input_tokens": 2254,
+   "total_output_tokens": 1002
+  },
+  "answered": 100
+ },
+ {
+  "backend": "hydrogen",
+  "n": 100,
+  "rep": 2,
+  "latency_s": 8.090274194999438,
+  "usage": {
+   "total_input_tokens": 5015,
+   "total_output_tokens": 2068
+  },
+  "answered": 100
+ }
+]

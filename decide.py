@@ -8,7 +8,9 @@ returns the same answer shape, so the benchmark and the agent can swap them.
              returns probabilities; no text generation)
   gemma      Gemma 4 E2B on a local llama-server, JSON constrained to the
              allowed answers
-  flashlite  Gemini Flash-Lite via generateContent, JSON constrained the same way
+  flashlite  Gemini 3.5 Flash-Lite via generateContent, JSON constrained the same way
+  flash      Gemini 3.8 Flash, same
+  hydrogen   Gemini 4 Hydrogen, same
 
 REST is used for the Decisions API on purpose: google-adk 2.x pins
 google-genai<3, and the SDK's client.decisions needs google-genai>=3.2.
@@ -26,6 +28,8 @@ import httpx
 API = "https://generativelanguage.googleapis.com/v1beta"
 DECISION_MODEL = os.environ.get("DECISION_MODEL", "gemini-decision-1")
 FLASHLITE_MODEL = os.environ.get("FLASHLITE_MODEL", "gemini-3.5-flash-lite")
+FLASH_MODEL = os.environ.get("FLASH_MODEL", "gemini-3.8-flash")
+HYDROGEN_MODEL = os.environ.get("HYDROGEN_MODEL", "gemini-4-hydrogen")
 GEMMA_URL = os.environ.get("GEMMA_URL", "http://127.0.0.1:8080")
 
 _http = httpx.Client(timeout=120)
@@ -170,12 +174,12 @@ def gemma(input_text: str, questions: dict) -> dict:
 
 
 # --------------------------------------------------------------------------
-# 3. Gemini Flash-Lite, generative, same prompt and schema
+# 3. Generative Gemini models, same prompt and schema as Gemma
 # --------------------------------------------------------------------------
-def flashlite(input_text: str, questions: dict) -> dict:
+def gemini(model: str, input_text: str, questions: dict, thinking: str = "minimal") -> dict:
     t0 = time.perf_counter()
     r = _http.post(
-        f"{API}/models/{FLASHLITE_MODEL}:generateContent",
+        f"{API}/models/{model}:generateContent",
         headers={"x-goog-api-key": api_key()},
         json={
             "contents": [{"role": "user", "parts": [{"text": _prompt(input_text, questions)}]}],
@@ -183,13 +187,13 @@ def flashlite(input_text: str, questions: dict) -> dict:
                 "temperature": 0,
                 "responseMimeType": "application/json",
                 "responseJsonSchema": _schema(questions),
-                "thinkingConfig": {"thinkingLevel": "minimal"},
+                "thinkingConfig": {"thinkingLevel": thinking},
             },
         },
     )
     dt = time.perf_counter() - t0
     if r.status_code != 200:
-        raise RuntimeError(f"flashlite {r.status_code}: {r.text[:400]}")
+        raise RuntimeError(f"{model} {r.status_code}: {r.text[:400]}")
     body = r.json()
     text = "".join(p.get("text", "") for p in body["candidates"][0]["content"]["parts"])
     u = body.get("usageMetadata", {})
@@ -204,7 +208,20 @@ def flashlite(input_text: str, questions: dict) -> dict:
     }
 
 
-BACKENDS = {"decisions": decisions, "gemma": gemma, "flashlite": flashlite}
+def flashlite(input_text: str, questions: dict) -> dict:
+    return gemini(FLASHLITE_MODEL, input_text, questions)
+
+
+# 3.8 Flash and 4 Hydrogen reject "minimal"; "low" is the lowest level they accept.
+def flash(input_text: str, questions: dict) -> dict:
+    return gemini(FLASH_MODEL, input_text, questions, thinking="low")
+
+
+def hydrogen(input_text: str, questions: dict) -> dict:
+    return gemini(HYDROGEN_MODEL, input_text, questions, thinking="low")
+
+
+BACKENDS = {"decisions": decisions, "gemma": gemma, "flashlite": flashlite, "flash": flash, "hydrogen": hydrogen}
 
 
 def pick(answer: dict):

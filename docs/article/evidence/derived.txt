@@ -1,32 +1,49 @@
-# Derived figures for the article, computed by script from the files named. Generated 2026-11-13.
+# Derived figures for the article, computed by docs/article/derive.py from the files named.
 
-## From results/2026-11-13-171540
+## From results/2026-11-13-180410
 tickets 48 hard block (last 18): 18
-decisions: urgency too high 17, too low 0; high-urgency tickets 8, rated normal 0, rated high 8
-gemma: urgency too high 4, too low 5; high-urgency tickets 8, rated normal 4, rated high 4
-flashlite: urgency too high 6, too low 0; high-urgency tickets 8, rated normal 0, rated high 8
-median ratio flashlite/decisions 3.5x, gemma/decisions 27.1x
+decisions: urgency too high 17, too low 0; high-urgency tickets rated normal: 0 of 8
+decisions: median per ticket 0.2 s; 1.0x the Decisions API median
+decisions: output tokens per ticket (mean) 0; input tokens per ticket (mean) 374
+gemma: urgency too high 4, too low 5; high-urgency tickets rated normal: 4 of 8
+gemma: median per ticket 3.4 s; 16.6x the Decisions API median
+gemma: output tokens per ticket (mean) 35; input tokens per ticket (mean) 288
+flashlite: urgency too high 4, too low 0; high-urgency tickets rated normal: 0 of 8
+flashlite: median per ticket 0.7 s; 3.5x the Decisions API median
+flashlite: output tokens per ticket (mean) 29; input tokens per ticket (mean) 280
+flash: urgency too high 6, too low 0; high-urgency tickets rated normal: 0 of 8
+flash: median per ticket 2.4 s; 11.7x the Decisions API median
+flash: output tokens per ticket (mean) 60; input tokens per ticket (mean) 280
+hydrogen: urgency too high 7, too low 1; high-urgency tickets rated normal: 0 of 8
+hydrogen: median per ticket 2.0 s; 9.7x the Decisions API median
+hydrogen: output tokens per ticket (mean) 175; input tokens per ticket (mean) 547
 decisions cost $0.0018
-decisions input tokens per ticket (mean) 374
-
-## From results/scale-2026-11-13-173236
-scale ticket words 59
-decisions: 1q 196 ms, 100q 348 ms, growth 1.8x
-flashlite: 1q 631 ms, 100q 2500 ms, growth 4.0x
-gemma: 1q 1901 ms, 100q 115069 ms, growth 60.5x
-at 100q: flashlite/decisions 7.2x, gemma/decisions 331x
-at 100q gemma 115 s
-
-## Same figures, in the article's wording
-decisions: high-urgency tickets rated normal: 0 of 8
-gemma: high-urgency tickets rated normal: 4 of 8
-flashlite: high-urgency tickets rated normal: 0 of 8
-decisions dept below 0.7 confidence: 5 of 6 correct
-decisions wants_refund below 0.7 confidence: 1 of 2 correct
-decisions urgency below 0.7 confidence: 8 of 25 correct
-flashlite at 100 questions: 2.5 s
-gemma median per ticket: 5.6 s
-decisions dept at or above 0.7 confidence: 41 of 42 correct
-decisions wants_refund at or above 0.7 confidence: 46 of 46 correct
-decisions urgency at or above 0.7 confidence: 23 of 23 correct
+decisions dept at or above 0.7 confidence: 41 of 42 correct; below 0.7 confidence: 5 of 6 correct
+decisions wants_refund at or above 0.7 confidence: 46 of 46 correct; below 0.7 confidence: 1 of 2 correct
+decisions urgency at or above 0.7 confidence: 23 of 23 correct; below 0.7 confidence: 8 of 25 correct
 decisions urgency correct: 31 of 48
+
+## From results/scale-2026-11-13-182530
+scale ticket words 59
+decisions: 1q 224 ms, 100q 359 ms (0.4 s), growth 1.6x; at 100q 1.0x the Decisions API
+gemma: 1q 1825 ms, 100q 115280 ms (115.3 s), growth 63.2x; at 100q 321.0x the Decisions API
+flashlite: 1q 852 ms, 100q 2584 ms (2.6 s), growth 3.0x; at 100q 7.2x the Decisions API
+flash: 1q 1898 ms, 100q 7191 ms (7.2 s), growth 3.8x; at 100q 20.0x the Decisions API
+hydrogen: 1q 1699 ms, 100q 8625 ms (8.6 s), growth 5.1x; at 100q 24.0x the Decisions API
+
+## Run to run, decisions and gemma, previous run results/2026-11-13-171540
+decisions: accuracy identical across runs: True; median 0.2 s then 0.2 s
+gemma: accuracy identical across runs: True; median 5.6 s then 3.4 s
+
+## Combined and relative figures
+decisions: team + refund 93/96; all three 29 of 48
+gemma: team + refund 89/96; all three 36 of 48
+flashlite: team + refund 90/96; all three 39 of 48
+flash: team + refund 94/96; all three 40 of 48
+hydrogen: team + refund 93/96; all three 38 of 48
+hydrogen output tokens / flash output tokens: 2.9x
+
+## Per-ticket answers, previous run vs this run
+decisions: tickets with any answer changed: 0 of 48
+gemma: tickets with any answer changed: 0 of 48
+flashlite: tickets with any answer changed: 8 of 48

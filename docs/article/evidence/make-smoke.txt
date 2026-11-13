@@ -2,6 +2,8 @@ python3 -c "from decide import BACKENDS, pick; from tickets import QUESTIONS, TI
 t = TICKETS[0][0]; print(t); \
 [print(n, f'{(r := f(t, QUESTIONS))[\"latency_s\"]*1000:.0f} ms', {k: pick(a) for k, a in r['answers'].items()}) for n, f in BACKENDS.items()]"
 I was charged twice for order #4471. Please refund the duplicate charge.
-decisions 296 ms {'wants_refund': True, 'urgency': 2, 'dept': 'billing'}
-gemma 3906 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
-flashlite 668 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+decisions 270 ms {'urgency': 2, 'wants_refund': True, 'dept': 'billing'}
+gemma 3807 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+flashlite 792 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+flash 3092 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+hydrogen 2148 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 2}

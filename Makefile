@@ -6,7 +6,7 @@ help:
 	@echo "make install   pip deps into the system python3"
 	@echo "make gemma     serve Gemma 4 E2B on CPU at 127.0.0.1:8080 (foreground)"
 	@echo "make smoke     one ticket through every backend"
-	@echo "make bench     48 labeled tickets x {decisions, gemma, flashlite}"
+	@echo "make bench     48 labeled tickets x {decisions, gemma, flashlite, flash, hydrogen}"
 	@echo "make scale     latency for 1..100 questions per request"
 	@echo "make agent     ADK triage agent in the terminal"
 	@echo "make web       ADK web UI on localhost:8000"
@@ -28,7 +28,7 @@ bench:
 	python3 bench.py
 
 scale:
-	python3 scale.py --backends decisions,gemma,flashlite --reps 3
+	python3 scale.py --backends decisions,gemma,flashlite,flash,hydrogen --reps 3
 
 agent:
 	adk run triage_agent

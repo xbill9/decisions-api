@@ -4,7 +4,7 @@
 All counting, accuracy and latency statistics are computed here, from the rows
 recorded in rows.jsonl -- nothing in the summary is typed in by hand.
 
-    python3 bench.py                         # all three backends
+    python3 bench.py                         # all five backends
     python3 bench.py --backends decisions,gemma
 """
 
@@ -17,7 +17,7 @@ import random
 import statistics
 from pathlib import Path
 
-from decide import BACKENDS, DECISION_MODEL, FLASHLITE_MODEL, pick
+from decide import BACKENDS, DECISION_MODEL, FLASH_MODEL, FLASHLITE_MODEL, HYDROGEN_MODEL, pick
 from tickets import QUESTIONS, TICKETS
 
 PRICE_PER_M_INPUT = 0.10  # USD, gemini-decision-1, from the launch post; output is $0
@@ -119,7 +119,8 @@ def to_markdown(s: dict, meta: dict) -> str:
     L = [f"# Decisions API vs generative backends — {meta['when']}", ""]
     L.append(f"{s['tickets']} hand-labeled support tickets, 3 questions each, one request per ticket per backend.")
     L.append(f"Models: decisions=`{meta['decision_model']}`, gemma=`{meta['gemma_model']}` on local CPU llama-server, "
-             f"flashlite=`{meta['flashlite_model']}`.")
+             f"flashlite=`{meta['flashlite_model']}`, flash=`{meta['flash_model']}`, "
+             f"hydrogen=`{meta['hydrogen_model']}`.")
     L.append("")
     L.append("| | " + " | ".join(bs) + " |")
     L.append("|---|" + "---|" * len(bs))
@@ -155,7 +156,7 @@ def to_markdown(s: dict, meta: dict) -> str:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backends", default="decisions,gemma,flashlite")
+    ap.add_argument("--backends", default="decisions,gemma,flashlite,flash,hydrogen")
     ap.add_argument("--seed", type=int, default=7)
     a = ap.parse_args()
     backends = a.backends.split(",")
@@ -169,6 +170,7 @@ def main():
     if "gemma" in backends:
         gemma_model = httpx.get(f"{GEMMA_URL}/v1/models").json()["data"][0]["id"]
     meta = {"when": when, "decision_model": DECISION_MODEL, "flashlite_model": FLASHLITE_MODEL,
+            "flash_model": FLASH_MODEL, "hydrogen_model": HYDROGEN_MODEL,
             "gemma_model": gemma_model, "seed": a.seed, "backends": backends}
     rows = run(backends, out, a.seed)
     s = summarize(rows, backends)

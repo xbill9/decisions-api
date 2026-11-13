@@ -1,16 +1,16 @@
 ---
-title: "The Gemini Decisions API: an ADK Triage Agent, and a Benchmark Against Gemma 4 E2B and Gemini Flash-Lite"
+title: "Benchmarking the Gemini Decisions API"
 published: false
-description: "The new Gemini Decisions API scores a fixed set of answers in one pass and returns probabilities. A support-ticket triage agent built on it with ADK, plus a 48-ticket benchmark and a 1-to-100-question latency test against Gemma 4 E2B on a laptop CPU and Gemini 3.5 Flash-Lite."
+description: "The Gemini Decisions API scores a fixed set of answers in one pass and returns probabilities. An ADK triage agent built on it, a 48-ticket benchmark against Gemini 3.8 Flash, Gemini 4 Hydrogen, Gemini 3.5 Flash-Lite and Gemma 4 E2B, and a test of 1 to 100 questions in one request."
 tags: gemini, adk, gemma, ai
 cover_image: https://raw.githubusercontent.com/xbill9/decisions-api/main/docs/article/devto-cover.df71ccfa.jpg
 ---
 
-This article provides a step by step guide to the new Gemini Decisions API, using customer-support ticket triage as the example. An ADK agent is built on it, and the same questions are put to Gemma 4 E2B on a laptop CPU and to Gemini 3.5 Flash-Lite, so the three can be compared on accuracy, speed and cost.
+This article provides a step by step guide to the new Gemini Decisions API, using customer-support ticket triage as the example. An ADK agent is built on it, and the same questions are put to four generative models, Gemini 3.8 Flash, Gemini 4 Hydrogen, Gemini 3.5 Flash-Lite and Gemma 4 E2B on a laptop CPU, so all five can be compared on accuracy, speed and cost.
 
 https://github.com/xbill9/decisions-api
 
-Google released the Decisions API on 2026-11-11 for "fast, closed-set decisions": routing, policy checks, model selection, grading. Every figure below comes from requests sent to it, to a local Gemma server and to Flash-Lite on 2026-11-13, and every run's raw rows are in the repository.
+Google released the Decisions API on 2026-11-11 for "fast, closed-set decisions": routing, policy checks, model selection, grading. Every figure below comes from requests sent on 2026-11-13, and every run's raw rows are in the repository.
 
 ---
 
@@ -38,15 +38,19 @@ The demo triages customer-support tickets. Every ticket gets the same three ques
 - **Is the customer asking for money back?** A `noul`.
 - **How urgent is it?** A `score` on low, normal, high.
 
-Those questions go to three backends through one function each in `decide.py`, with the same inputs and the same answer shape:
+Those questions go to five backends through one function each in `decide.py`, with the same inputs and the same answer shape:
 
-1. **The Decisions API**, called over REST.
-2. **Gemma 4 E2B** on `llama-server`, CPU only, on an Intel i7-10750H laptop. The questions become a prompt, and a JSON schema limits each reply to the allowed answers.
-3. **Gemini 3.5 Flash-Lite** through `generateContent`, with the same prompt and schema. It is the cloud model that writes its answers, so it separates "scores answers" from "writes answers" on the same network.
+1. **The Decisions API**, `gemini-decision-1`, called over REST.
+2. **Gemini 3.8 Flash**, `gemini-3.8-flash`.
+3. **Gemini 4 Hydrogen**, `gemini-4-hydrogen`.
+4. **Gemini 3.5 Flash-Lite**, `gemini-3.5-flash-lite`.
+5. **Gemma 4 E2B** on `llama-server`, CPU only, on an Intel i7-10750H laptop.
+
+The four generative models get the questions as a prompt plus a JSON schema that limits each reply to the allowed answers. They write their answers; the Decisions API scores them.
 
 On top of that sit three things you can run:
 
-- **`make bench`**: 48 hand-labelled tickets through all three backends, scored and timed.
+- **`make bench`**: 48 hand-labelled tickets through all five backends, scored and timed.
 - **`make scale`**: one ticket with 1, 10, 25, 50 and 100 yes/no questions in a single request.
 - **`make web`**: an ADK agent that uses the Decisions API as a guardrail in front of the LLM and as its triage tool.
 
@@ -138,9 +142,9 @@ To compare backends, every answer is reduced to one value by `pick()`: yes when 
 
 ---
 
-#### Step 3 — Ask Gemma the Same Questions
+#### Step 3 — Ask the Generative Models the Same Questions
 
-Gemma writes its answers, so the same question dictionary becomes a prompt and a JSON schema. The schema's `enum` lists are the allowed answers, and `llama-server` constrains decoding to them:
+The same question dictionary becomes a prompt and a JSON schema. The schema's `enum` lists are the allowed answers:
 
 ```python
 def _schema(questions: dict) -> dict:
@@ -156,16 +160,26 @@ def _schema(questions: dict) -> dict:
             "additionalProperties": False}
 ```
 
-The request goes to `/v1/chat/completions` at temperature 0 with thinking off. Flash-Lite gets the same prompt and schema through `generateContent` with `responseJsonSchema` and minimal thinking.
+The three Gemini models share one function that sends the prompt to `generateContent` with `responseJsonSchema`, at temperature 0 and the lowest thinking level each model accepts:
 
-One ticket through all three:
+| Model | Thinking level |
+| :--- | :--- |
+| Gemini 3.5 Flash-Lite | `minimal` |
+| Gemini 3.8 Flash | `low` |
+| Gemini 4 Hydrogen | `low` |
+
+3.8 Flash and 4 Hydrogen answer `minimal` with `400: Thinking level MINIMAL is not supported for this model`. Gemma gets the same prompt and schema on `/v1/chat/completions` with thinking off.
+
+One ticket through all five:
 
 ```
 $ make smoke
 I was charged twice for order #4471. Please refund the duplicate charge.
-decisions 296 ms {'wants_refund': True, 'urgency': 2, 'dept': 'billing'}
-gemma 3906 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
-flashlite 668 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+decisions 270 ms {'urgency': 2, 'wants_refund': True, 'dept': 'billing'}
+gemma 3807 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+flashlite 792 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+flash 3092 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 1}
+hydrogen 2148 ms {'dept': 'billing', 'wants_refund': True, 'urgency': 2}
 ```
 
 The generative backends return one pick per question and no probabilities, so there is no confidence to act on.
@@ -176,46 +190,47 @@ The generative backends return one pick per question and no probabilities, so th
 
 `tickets.py` holds 48 tickets with a hand-written answer key. The first 30 are clear cases across the six teams. The last 18 are written to be hard: two topics in one message, sarcasm, Spanish and German, a chargeback threat, a safety hazard, and a ticket that tries to instruct the classifier. `wants_refund` is true only for an explicit request for money back or a chargeback threat.
 
-The offline tests check that every label is a valid option and that every question stays inside the API's limits, with the HTTP calls mocked:
+The offline tests check that every label is a valid option, that every question stays inside the API's limits, and what each backend sends, with the HTTP calls mocked:
 
 ```
 $ make test
-.................                                                        [100%]
-17 passed in 0.52s
+..................                                                       [100%]
+18 passed in 0.68s
 ```
 
 ---
 
 #### Step 5 — Run the Benchmark
 
-`bench.py` sends each ticket to the three backends in a shuffled order, one request per ticket per backend, after one warm-up call each. It writes one row per call to `rows.jsonl` and computes every figure in the summary from those rows.
+`bench.py` sends each ticket to the five backends in a shuffled order, one request per ticket per backend, after one warm-up call each. It writes one row per call to `rows.jsonl` and computes every figure in the summary from those rows.
 
 ```
 $ make bench
 ```
 
-| Question | Decisions API | Gemma 4 E2B (CPU) | Gemini 3.5 Flash-Lite |
-| :--- | :--- | :--- | :--- |
-| Team correct | 🥇 46/48 (96%) | 43/48 (90%) | 🥈 45/48 (94%) |
-| Refund correct | 🥇 47/48 (98%) | 🥈 46/48 (96%) | 45/48 (94%) |
-| Urgency correct | 31/48 (65%) | 🥈 39/48 (81%) | 🥇 42/48 (88%) |
-| Urgency within one level | 48/48 | 48/48 | 48/48 |
-| All three correct | 29/48 (60%) | 🥈 36/48 (75%) | 🥇 37/48 (77%) |
-| Median time per ticket | 🥇 208 ms | 5628 ms | 🥈 734 ms |
-| 90th percentile time | 🥇 272 ms | 6127 ms | 🥈 843 ms |
-| Errors | 0 | 0 | 0 |
+| | Decisions | 3.8 Flash | 4 Hydrogen | 3.5 Flash-Lite | Gemma E2B |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Team | 🥇 46/48 | 🥇 46/48 | 🥈 45/48 | 🥈 45/48 | 43/48 |
+| Refund | 🥈 47/48 | 🥇 48/48 | 🥇 48/48 | 45/48 | 🥉 46/48 |
+| Urgency | 31/48 | 🥈 42/48 | 🥉 40/48 | 🥇 44/48 | 39/48 |
+| All three | 29/48 | 🥇 40/48 | 🥉 38/48 | 🥈 39/48 | 36/48 |
+| Median time | 🥇 202 ms | 2373 ms | 🥉 1951 ms | 🥈 714 ms | 3352 ms |
+| 90th percentile | 🥇 227 ms | 4414 ms | 🥉 2844 ms | 🥈 877 ms | 3919 ms |
+| Output tokens | 🥇 0 | 2,870 | 8,413 | 1,384 | 1,680 |
 
-The Decisions API run cost $0.0018 for 17,950 input tokens. Its median is 3.5 times faster than Flash-Lite and 27 times faster than Gemma on the laptop.
+No backend returned an error. The Decisions API run cost $0.0018 for 17,950 input tokens. Its median was 3.5 times faster than Flash-Lite, 9.7 times faster than Hydrogen and 11.7 times faster than 3.8 Flash. Hydrogen counted the same prompt as 547 input tokens per ticket against 280 for the Flash models, and wrote 175 output tokens per ticket, thinking included, at its lowest thinking level.
 
 The urgency misses lean in different directions, counted from `rows.jsonl`:
 
 | Backend | One level too high | One level too low | High-urgency tickets rated normal |
 | :--- | :--- | :--- | :--- |
 | Decisions API | 17 | 0 | 0 of 8 |
+| Gemini 3.8 Flash | 6 | 0 | 0 of 8 |
+| Gemini 4 Hydrogen | 7 | 1 | 0 of 8 |
+| Gemini 3.5 Flash-Lite | 4 | 0 | 0 of 8 |
 | Gemma 4 E2B | 4 | 5 | 4 of 8 |
-| Flash-Lite | 6 | 0 | 0 of 8 |
 
-The Decisions API rates urgency up and never down. Gemma rated half of the high-urgency tickets as normal, which for triage is the expensive direction to be wrong in.
+Every miss on every backend was one level off. The Decisions API rates urgency up and never down. Gemma rated half of the high-urgency tickets as normal, which for triage is the expensive direction to be wrong in.
 
 ---
 
@@ -229,27 +244,27 @@ Split the Decisions API's answers at a confidence of 0.7, the threshold its docu
 | Refund | 46 of 46 | 1 of 2 |
 | Urgency | 23 of 23 | 8 of 25 |
 
-Every urgency answer above the line was right. Below it, urgency was right 8 times in 25, and those 25 tickets hold all 17 of its urgency misses. So the routing rule writes itself: act automatically at 0.7 and above, and send the rest to a person or a bigger model. The two generative backends give one answer with nothing to split on.
+Every urgency answer above the line was right. Below it, urgency was right 8 times in 25, and those 25 tickets hold all 17 of its urgency misses. So the routing rule writes itself: act automatically at 0.7 and above, and send the rest to a person or one of the bigger models. The four generative backends give one answer with nothing to split on.
 
 ---
 
 #### Step 6 — Ask 100 Questions in One Request
 
-The launch post says latency stays nearly flat from 1 to 100 questions. `scale.py` checks that on one 59-word ticket with yes/no questions ("Does the message mention a refund?"), three runs per cell:
+The launch post says latency stays nearly flat from 1 to 100 questions. `scale.py` checks that on one 59-word ticket with yes/no questions ("Does the message mention a refund?"), three runs per cell, median shown:
 
 ```
-$ python3 scale.py --backends decisions,gemma,flashlite --reps 3
+$ make scale
 ```
 
-| Questions | Decisions API | Gemini 3.5 Flash-Lite | Gemma 4 E2B (CPU) |
-| :--- | :--- | :--- | :--- |
-| 1 | 196 ms | 631 ms | 1,901 ms |
-| 10 | 200 ms | 795 ms | 10,778 ms |
-| 25 | 224 ms | 1,138 ms | 27,011 ms |
-| 50 | 253 ms | 1,596 ms | 63,346 ms |
-| 100 | 348 ms | 2,500 ms | 115,069 ms |
+| Questions | Decisions | 3.8 Flash | 4 Hydrogen | 3.5 Flash-Lite | Gemma E2B |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | 224 ms | 1,898 ms | 1,699 ms | 852 ms | 1,825 ms |
+| 10 | 216 ms | 1,980 ms | 2,395 ms | 935 ms | 11,647 ms |
+| 25 | 233 ms | 2,938 ms | 3,611 ms | 1,147 ms | 29,294 ms |
+| 50 | 281 ms | 4,461 ms | 5,722 ms | 1,617 ms | 59,470 ms |
+| 100 | 359 ms | 7,191 ms | 8,625 ms | 2,584 ms | 115,280 ms |
 
-From 1 to 100 questions the median grew 1.8 times for the Decisions API, 4.0 times for Flash-Lite and 60.5 times for Gemma. A generative model writes one answer per question; the Decisions API scores all of them in one pass. At 100 questions it was 7.2 times faster than Flash-Lite and 331 times faster than Gemma on the laptop.
+From 1 to 100 questions the median grew 1.6 times for the Decisions API, 3.0 times for Flash-Lite, 3.8 times for 3.8 Flash, 5.1 times for Hydrogen and 63.2 times for Gemma. A generative model writes one answer per question; the Decisions API scores all of them in one pass. At 100 questions it answered in 359 ms, 7.2 times faster than Flash-Lite, 20 times faster than 3.8 Flash and 24 times faster than Hydrogen.
 
 ---
 
@@ -304,44 +319,45 @@ The image is a simulated ADK web UI. Its messages and numbers are copied from tw
 
 #### Compare and Contrast
 
-| | Decisions API | Gemma 4 E2B (laptop CPU) | Gemini 3.5 Flash-Lite |
-| :--- | :--- | :--- | :--- |
-| How it answers | scores every option | writes JSON | writes JSON |
-| Routing accuracy (team) | 🥇 46/48 | 43/48 | 🥈 45/48 |
-| Urgency accuracy | 31/48 | 🥈 39/48 | 🥇 42/48 |
-| Confidence per answer | 🥇 yes | no | no |
-| Median per ticket | 🥇 208 ms | 5628 ms | 🥈 734 ms |
-| 100 questions in one request | 🥇 348 ms | 115 s | 🥈 2.5 s |
-| Billed for | input tokens only | nothing (your hardware) | input and output tokens |
-| Runs offline | no | 🥇 yes | no |
+| | Decisions API | 3.8 Flash | 4 Hydrogen | 3.5 Flash-Lite | Gemma E2B (CPU) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| How it answers | scores options | writes JSON | writes JSON | writes JSON | writes JSON |
+| Team + refund | 🥈 93/96 | 🥇 94/96 | 🥈 93/96 | 90/96 | 89/96 |
+| Urgency | 31/48 | 🥈 42/48 | 🥉 40/48 | 🥇 44/48 | 39/48 |
+| Confidence per answer | 🥇 yes | no | no | no | no |
+| Median per ticket | 🥇 202 ms | 2373 ms | 🥉 1951 ms | 🥈 714 ms | 3352 ms |
+| 100 questions | 🥇 359 ms | 7.2 s | 8.6 s | 🥈 2.6 s | 115.3 s |
+| Billed for | input only | input + output | input + output | input + output | your hardware |
 
 ---
 
 #### So, Which One?
 
-Use the Decisions API for anything with a fixed answer set: routing, yes/no policy checks, and screening messages in front of an agent. It was the most accurate here on team and refund, the fastest by a wide margin, and its confidence score tells you which answers to act on.
+Use the Decisions API for anything with a fixed answer set: routing, yes/no policy checks, and screening messages in front of an agent. On team and refund it scored within one ticket of the best model here, in about a tenth of the time of 3.8 Flash and Hydrogen, and its confidence score tells you which answers to act on.
 
-Keep a generative model for ordered scales until the rubric is tuned. Flash-Lite scored best on urgency here. With the Decisions API, reword the levels or set your own thresholds on `score`, and send anything under 0.7 confidence to review.
+Send what it is unsure of to a generative model. Gemini 3.8 Flash had the best all-round score, 40 of 48 tickets with all three answers right, and Flash-Lite the best urgency score at under a second. Gemini 4 Hydrogen matched 3.8 Flash on refunds and had the faster median, while writing 2.9 times as many output tokens.
 
-Gemma 4 E2B on a CPU fits where the data cannot leave the machine and seconds per ticket are acceptable.
+For ordered scales, tune the rubric before relying on the Decisions API alone: reword the levels or set your own thresholds on `score`. Gemma 4 E2B on a CPU fits where the data cannot leave the machine and seconds per ticket are acceptable.
 
 ---
 
 #### Summary
 
-The goal of this article was to show what the Gemini Decisions API does on a real task and how it compares with a small local model and a cloud generative model. The key to the solution was one function per backend with the same questions and the same answer shape, so the benchmark, the scale test and the ADK agent could swap them freely. The results were:
+The goal of this article was to show what the Gemini Decisions API does on a real task and how it compares with four generative models, from a laptop-sized Gemma to Gemini 4 Hydrogen. The key to the solution was one function per backend with the same questions and the same answer shape, so the benchmark, the scale test and the ADK agent could swap them freely. The results were:
 
-- 🟢 Team routing 46/48 and refund detection 47/48, the best of the three backends.
-- 🟢 Median 208 ms per ticket: 3.5 times faster than Flash-Lite and 27 times faster than Gemma on a laptop CPU.
-- 🟢 1 to 100 questions in one request grew its median from 196 ms to 348 ms; Flash-Lite went to 2.5 s and Gemma to 115 s.
+- 🟢 Median 202 ms per ticket: 3.5 times faster than Flash-Lite, 9.7 times faster than Hydrogen and 11.7 times faster than 3.8 Flash.
+- 🟢 Team routing 46/48, tied with 3.8 Flash for the best score; refunds 47/48, one behind 3.8 Flash and Hydrogen.
+- 🟢 100 questions in one request took 359 ms; 3.8 Flash took 7.2 s and Hydrogen 8.6 s.
 - 🟢 Its confidence score separates right from wrong: every urgency answer at 0.7 or above was correct (23 of 23).
 - 🟢 The whole 48-ticket run cost $0.0018, billed on input tokens only.
 - 🟢 As an ADK guardrail it blocked a prompt injection at 0.98 before the LLM was called.
-- ⚠️ Urgency on a three-level scale was right 31 of 48 times, and every miss was one level too high.
+- 🟢 Gemini 3.8 Flash had the most tickets fully right, 40 of 48; Gemini 4 Hydrogen and 3.8 Flash both got all 48 refund questions right.
+- ⚠️ The Decisions API got urgency right 31 of 48 times, the lowest of the five, and every miss was one level too high.
+- ⚠️ 3.8 Flash and 4 Hydrogen reject the `minimal` thinking level; at `low`, Hydrogen wrote 175 output tokens per ticket.
 - ⚠️ The Python SDK method needs `google-genai` 3.2 or later, which `google-adk` 2.x does not accept; REST works in both.
-- ❌ Gemma 4 E2B rated 4 of the 8 high-urgency tickets as normal, at 5.6 s per ticket on CPU.
+- ❌ Gemma 4 E2B rated 4 of the 8 high-urgency tickets as normal.
 
-Scope: one run of 48 text tickets in English, Spanish and German on 2026-11-13, three questions each, one request at a time, from one laptop on a home connection. The answer key is hand-written by one person, so a gap of two or three tickets between backends could move if borderline tickets were labelled differently. The scale test used one ticket and three runs per cell. Gemma 4 E2B ran as a Q4_0 GGUF on `llama-server`, CPU only (Intel i7-10750H), and its times would differ on a GPU. No images, audio or PDFs were tested. The agent used `google-adk` 2.13.0 and Gemini 3.5 Flash.
+Scope: one benchmark run of 48 text tickets in English, Spanish and German on 2026-11-13, three questions each, one request at a time, from one laptop on a home connection. The generative models ran at temperature 0 and the lowest thinking level each accepts. The answer key is hand-written by one person, so a gap of two or three tickets between backends could move if borderline tickets were labelled differently. The scale test used one ticket and three runs per cell. Gemma 4 E2B ran as a Q4_0 GGUF on `llama-server`, CPU only (Intel i7-10750H); the laptop throttles under load, and an earlier run of the same benchmark gave the same Gemma answers at a 5.6 s median against 3.4 s here. The Decisions API and Gemma returned identical answers on all 48 tickets in both runs; Flash-Lite changed at least one answer on 8 of 48 tickets between them at temperature 0. No images, audio or PDFs were tested. The agent used `google-adk` 2.13.0 and Gemini 3.5 Flash.
 
 The strategy for using the Gemini Decisions API for support-ticket triage was validated with an incremental step by step approach.
 
@@ -351,8 +367,8 @@ The strategy for using the Gemini Decisions API for support-ticket triage was va
 
 - [decisions-api on GitHub](https://github.com/xbill9/decisions-api)
 - [Evidence for this article](https://github.com/xbill9/decisions-api/tree/main/docs/article/evidence)
-- [Benchmark run](https://github.com/xbill9/decisions-api/tree/main/results/2026-11-13-171540)
-- [Scale run](https://github.com/xbill9/decisions-api/tree/main/results/scale-2026-11-13-173236)
+- [Benchmark run](https://github.com/xbill9/decisions-api/tree/main/results/2026-11-13-180410)
+- [Scale run](https://github.com/xbill9/decisions-api/tree/main/results/scale-2026-11-13-182530)
 - [Gemini Decisions API launch post](https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/)
 - [Decisions API documentation](https://aistudio.google.com/docs/decisions-api)
 - [Google Agent Development Kit](https://google.github.io/adk-docs/)

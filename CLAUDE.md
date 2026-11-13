@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 Demo of the Gemini Decisions API (`gemini-decision-1`): an ADK agent (`triage_agent/`), a 48-ticket
-benchmark against Gemma 4 E2B and Gemini Flash-Lite (`bench.py`), and a 1→100-question latency test
+benchmark against Gemini 3.8 Flash, Gemini 4 Hydrogen, Gemini 3.5 Flash-Lite and Gemma 4 E2B (`bench.py`), and a 1→100-question latency test
 (`scale.py`). `make help` lists the commands.
 
 ## Decisions API

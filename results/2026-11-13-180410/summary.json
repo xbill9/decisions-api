@@ -1,0 +1,305 @@
+{
+  "meta": {
+    "when": "2026-11-13-180410",
+    "decision_model": "gemini-decision-1",
+    "flashlite_model": "gemini-3.5-flash-lite",
+    "flash_model": "gemini-3.8-flash",
+    "hydrogen_model": "gemini-4-hydrogen",
+    "gemma_model": "/home/xbill/models/gemma-4-E2B-it-qat-q4_0-exact-v2/gemma-4-E2B-it-q4_0-exact.gguf",
+    "seed": 7,
+    "backends": [
+      "decisions",
+      "gemma",
+      "flashlite",
+      "flash",
+      "hydrogen"
+    ]
+  },
+  "tickets": 48,
+  "backends": {
+    "decisions": {
+      "calls": 48,
+      "errors": 0,
+      "latency_s": {
+        "median": 0.20214967199990497,
+        "p90": 0.22713634800093135,
+        "min": 0.1638171169997804,
+        "max": 0.45119487599913555
+      },
+      "input_tokens_total": 17950,
+      "output_tokens_total": 0,
+      "accuracy": {
+        "dept": {
+          "correct": 46,
+          "of": 48,
+          "rate": 0.9583333333333334
+        },
+        "wants_refund": {
+          "correct": 47,
+          "of": 48,
+          "rate": 0.9791666666666666
+        },
+        "urgency": {
+          "correct": 31,
+          "of": 48,
+          "rate": 0.6458333333333334
+        },
+        "urgency_within_one": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "all_three": {
+          "correct": 29,
+          "of": 48,
+          "rate": 0.6041666666666666
+        }
+      },
+      "cost_usd": 0.001795,
+      "by_confidence": {
+        "dept": {
+          "conf>=0.7": {
+            "n": 42,
+            "correct": 41
+          },
+          "conf<0.7": {
+            "n": 6,
+            "correct": 5
+          }
+        },
+        "wants_refund": {
+          "conf>=0.7": {
+            "n": 46,
+            "correct": 46
+          },
+          "conf<0.7": {
+            "n": 2,
+            "correct": 1
+          }
+        },
+        "urgency": {
+          "conf>=0.7": {
+            "n": 23,
+            "correct": 23
+          },
+          "conf<0.7": {
+            "n": 25,
+            "correct": 8
+          }
+        }
+      }
+    },
+    "gemma": {
+      "calls": 48,
+      "errors": 0,
+      "latency_s": {
+        "median": 3.3524093264995827,
+        "p90": 3.919181381599992,
+        "min": 2.8092754919998697,
+        "max": 4.657233947998975
+      },
+      "input_tokens_total": 13822,
+      "output_tokens_total": 1680,
+      "accuracy": {
+        "dept": {
+          "correct": 43,
+          "of": 48,
+          "rate": 0.8958333333333334
+        },
+        "wants_refund": {
+          "correct": 46,
+          "of": 48,
+          "rate": 0.9583333333333334
+        },
+        "urgency": {
+          "correct": 39,
+          "of": 48,
+          "rate": 0.8125
+        },
+        "urgency_within_one": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "all_three": {
+          "correct": 36,
+          "of": 48,
+          "rate": 0.75
+        }
+      },
+      "agreement_with_decisions": {
+        "dept": {
+          "same": 43,
+          "of": 48
+        },
+        "wants_refund": {
+          "same": 45,
+          "of": 48
+        },
+        "urgency": {
+          "same": 28,
+          "of": 48
+        }
+      }
+    },
+    "flashlite": {
+      "calls": 48,
+      "errors": 0,
+      "latency_s": {
+        "median": 0.7141752190000261,
+        "p90": 0.8765467790002731,
+        "min": 0.5843191039984958,
+        "max": 0.9373188319987094
+      },
+      "input_tokens_total": 13438,
+      "output_tokens_total": 1384,
+      "accuracy": {
+        "dept": {
+          "correct": 45,
+          "of": 48,
+          "rate": 0.9375
+        },
+        "wants_refund": {
+          "correct": 45,
+          "of": 48,
+          "rate": 0.9375
+        },
+        "urgency": {
+          "correct": 44,
+          "of": 48,
+          "rate": 0.9166666666666666
+        },
+        "urgency_within_one": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "all_three": {
+          "correct": 39,
+          "of": 48,
+          "rate": 0.8125
+        }
+      },
+      "agreement_with_decisions": {
+        "dept": {
+          "same": 47,
+          "of": 48
+        },
+        "wants_refund": {
+          "same": 46,
+          "of": 48
+        },
+        "urgency": {
+          "same": 33,
+          "of": 48
+        }
+      }
+    },
+    "flash": {
+      "calls": 48,
+      "errors": 0,
+      "latency_s": {
+        "median": 2.3725408345007963,
+        "p90": 4.414232410600198,
+        "min": 1.431842592999601,
+        "max": 8.05667911099954
+      },
+      "input_tokens_total": 13438,
+      "output_tokens_total": 2870,
+      "accuracy": {
+        "dept": {
+          "correct": 46,
+          "of": 48,
+          "rate": 0.9583333333333334
+        },
+        "wants_refund": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "urgency": {
+          "correct": 42,
+          "of": 48,
+          "rate": 0.875
+        },
+        "urgency_within_one": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "all_three": {
+          "correct": 40,
+          "of": 48,
+          "rate": 0.8333333333333334
+        }
+      },
+      "agreement_with_decisions": {
+        "dept": {
+          "same": 47,
+          "of": 48
+        },
+        "wants_refund": {
+          "same": 47,
+          "of": 48
+        },
+        "urgency": {
+          "same": 37,
+          "of": 48
+        }
+      }
+    },
+    "hydrogen": {
+      "calls": 48,
+      "errors": 0,
+      "latency_s": {
+        "median": 1.9509212339999067,
+        "p90": 2.8437446362997436,
+        "min": 1.123067798998818,
+        "max": 3.8305677370008198
+      },
+      "input_tokens_total": 26253,
+      "output_tokens_total": 8413,
+      "accuracy": {
+        "dept": {
+          "correct": 45,
+          "of": 48,
+          "rate": 0.9375
+        },
+        "wants_refund": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "urgency": {
+          "correct": 40,
+          "of": 48,
+          "rate": 0.8333333333333334
+        },
+        "urgency_within_one": {
+          "correct": 48,
+          "of": 48,
+          "rate": 1.0
+        },
+        "all_three": {
+          "correct": 38,
+          "of": 48,
+          "rate": 0.7916666666666666
+        }
+      },
+      "agreement_with_decisions": {
+        "dept": {
+          "same": 46,
+          "of": 48
+        },
+        "wants_refund": {
+          "same": 47,
+          "of": 48
+        },
+        "urgency": {
+          "same": 37,
+          "of": 48
+        }
+      }
+    }
+  }
+}
