@@ -11,6 +11,7 @@ help:
 	@echo "make agent     ADK triage agent in the terminal"
 	@echo "make web       ADK web UI on localhost:8000"
 	@echo "make test      offline tests (no network, no key, no Gemma)"
+	@echo "make lint      ruff check ."
 
 install:
 	pip install -r requirements.txt
