@@ -37,3 +37,5 @@ benchmark against Gemma 4 E2B and Gemini Flash-Lite (`bench.py`), and a 1→100-
 ## Code
 
 - Lint: `ruff check .` (config in `ruff.toml`). Do not run `ruff format` across the repo.
+- Test: `make test` — offline only (httpx.MockTransport), no key, network or Gemma needed. Keep new tests offline;
+  `test_tickets_are_unique_and_counted` pins the ticket count the README quotes.

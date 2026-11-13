@@ -29,7 +29,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import decide
 from tickets import QUESTIONS
 
-os.environ.setdefault("GEMINI_API_KEY", decide.api_key())
+try:  # ADK's Gemini client reads the key from the environment
+    os.environ.setdefault("GEMINI_API_KEY", decide.api_key())
+except RuntimeError:
+    pass  # importable without a key (tests); the first model call will fail with a clear error
 os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "false")
 
 CONF = 0.7

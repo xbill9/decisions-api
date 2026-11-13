@@ -1,6 +1,6 @@
 GEMMA_RIG ?= $(HOME)/gemma4-dev/local-llamacpp-cpu-2b-q4_0
 
-.PHONY: help install gemma smoke bench scale agent web lint
+.PHONY: help install gemma smoke bench scale agent web lint test
 
 help:
 	@echo "make install   pip deps into the system python3"
@@ -10,6 +10,7 @@ help:
 	@echo "make scale     latency for 1..100 questions per request"
 	@echo "make agent     ADK triage agent in the terminal"
 	@echo "make web       ADK web UI on localhost:8000"
+	@echo "make test      offline tests (no network, no key, no Gemma)"
 
 install:
 	pip install -r requirements.txt
@@ -36,3 +37,6 @@ web:
 
 lint:
 	ruff check .
+
+test:
+	env -u GEMINI_API_KEY -u GOOGLE_API_KEY python3 -m pytest -q
