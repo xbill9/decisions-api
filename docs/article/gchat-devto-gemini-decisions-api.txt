@@ -1,0 +1,13 @@
+This article provides a step by step guide to the new Gemini Decisions API, using customer-support ticket triage as the example. An ADK agent is built on it, and the same questions are put to four generative models, Gemini 3.8 Flash, Gemini 4 Hydrogen, Gemini 3.5 Flash-Lite and Gemma 4 E2B on a laptop CPU, so all five can be compared on accuracy, speed and cost.
+
+https://github.com/xbill9/decisions-api
+
+Google released the Decisions API on 2026-11-11 for "fast, closed-set decisions": routing, policy checks, model selection, grading. Every figure below comes from requests sent on 2026-11-13, and every run's raw rows are in the repository.
+
+Dev.to is here: https://dev.to/gde/benchmarking-the-gemini-decisions-api-l31
+
+Medium is here: https://medium.com/@xbill999/benchmarking-the-gemini-decisions-api-b33d3bf76bab
+
+Substack is here: https://xbill9.substack.com/p/benchmarking-the-gemini-decisions
+
+My LinkedIn post is here: https://www.linkedin.com/posts/xbill_gemma-adk-hydrogen-share-7527158504852242432-e0K2/
